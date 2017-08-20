@@ -1,9 +1,16 @@
-web:
-    build: .
-    ports:
-        - "5000:5000"
-    volumes:
-        - ".:/app"
-
-postgres:
-    image: "postgres:10"
+version: '3.3'
+services:
+    pg:
+        image: "postgres:latest"
+        environment:
+            - POSTGRES_USER=docker
+            - POSTGRES_PASSWORD=docker
+            - POSTGRES_DB=docker
+    web:
+        image: "todo:latest"
+        ports:
+            - "5000:5000"
+        volumes:
+            - ".:/app"
+        depends_on:
+            - pg
