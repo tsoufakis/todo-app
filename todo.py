@@ -12,8 +12,9 @@ def hello_world():
     bob = ListRow('bob', 'Im a bob')
     db.session.add(bob)
     db.session.commit()
-    print(bob, file=sys.stderr)
-    return 'Hello World!!'
+    rows = ListRow.query.all()
+    rows = ['{} | {}\n'.format(r.author, r.text) for r in rows]
+    return 'Hello World!\n{}'.format(''.join(rows))
 
 @app.route('/create')
 def create():
