@@ -1,3 +1,5 @@
 ENV
 todo.egg-info
 *.pyc
+*.swp
+*.swo
